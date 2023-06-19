@@ -41,19 +41,15 @@ def multi_parameter_sweep(
     parameter_sweep_values_list = []
     parameter_sweep_design_dictionary_array = []
 
-    for parameter_sweep_name in parameter_sweep_dictionary.keys():
+    for parameter_sweep_name, value in parameter_sweep_dictionary.items():
         parameter_names_sweep_list.extend([parameter_sweep_name])
-        parameter_sweep_values_list.extend(
-            [parameter_sweep_dictionary[parameter_sweep_name].tolist()]
-        )
+        parameter_sweep_values_list.extend([value.tolist()])
     sweep_combinations = list(itertools.product(*parameter_sweep_values_list))
 
     for parameter_combination in sweep_combinations:
         design = base_design_configuration.copy()
-        parameter_index = 0
-        for parameter in parameter_combination:
+        for parameter_index, parameter in enumerate(parameter_combination):
             design[parameter_names_sweep_list[parameter_index]] = parameter
-            parameter_index += 1
         parameter_sweep_design_dictionary_array.extend([design])
 
     return parameter_sweep_design_dictionary_array

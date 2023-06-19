@@ -19,7 +19,7 @@ def run_openlane_flow(
     """
     if configuration is None:
         # Get extract configuration file from config.json on directory
-        config_json_filepath = design_directory + "/config.json"
+        config_json_filepath = f"{design_directory}/config.json"
         config_json = open(config_json_filepath)
         configuration = json.load(config_json)
 

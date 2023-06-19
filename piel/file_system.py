@@ -7,7 +7,7 @@ from typing import Literal
 
 def copy_source_folder(source_directory: str, target_directory: str):
     if os.path.exists(target_directory):
-        answer = input("Confirm deletion of: " + target_directory)
+        answer = input(f"Confirm deletion of: {target_directory}")
         if answer.upper() in ["Y", "YES"]:
             shutil.rmtree(target_directory)
         elif answer.upper() in ["N", "NO"]:
